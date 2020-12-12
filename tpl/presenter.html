@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{LANGUAGE}} Sample</title>
+<style>
+{{STYLE}}
+</style>
+</head>
+<body>
+	<h1>{{STYLE_NAME}}</h1>
+	<form method="POST" class="container">
+		<div class="row">
+			<select name="style"></select>
+		</div>
+		<div class="half-row">
+			<textarea name="code">{{RAWCODE}}</textarea>
+		</div>
+		<div class="half-row">
+			<div class="hljs">{{CODE}}</div>
+		</div>
+	</form>
+<script>
+	const sel = document.getElementsByTagName('select')[0];
+	([{{ALL_STYLES}}]).forEach( style => {
+			const opt = document.createElement('option');
+			const txt = document.createTextNode(style);
+			if ("{{STYLE_NAME}}" == style) {
+				opt.setAttribute("selected", "selected");
+			}
+			opt.appendChild(txt);
+			sel.appendChild(opt);
+	});
+	sel.addEventListener('change', () => document.getElementsByTagName('form')[0].submit());
+</script>
+<style>
+.container {
+	display: flex;
+	flex-wrap: wrap;
+}
+.row, .row select { width: 100%; }
+.half-row {
+	width: 50%;
+}
+.half-row textarea { width: 99%; }
+</style>
+</body>
+</html>
