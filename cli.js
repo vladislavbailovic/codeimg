@@ -24,8 +24,8 @@ const main = async () => {
 	0 /* 0 means stdin */);
 
 	const path = await capture.file(file, style);
-	if (stdout) {
-		return output.clipboard(path)
-	}
+	return stdout
+		? output.clipboard(path)
+		: output.file(path, file);
 };
 main();
