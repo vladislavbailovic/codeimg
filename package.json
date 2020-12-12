@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "command-line-args": "^5.1.1",
+    "command-line-usage": "^6.1.1",
     "highlight.js": "^10.4.1",
     "puppeteer": "^5.5.0"
   }
