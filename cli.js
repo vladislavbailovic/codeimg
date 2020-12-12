@@ -1,3 +1,4 @@
+const { basename } = require('path');
 const cliArgs = require('command-line-args');
 const usage = require('command-line-usage');
 
@@ -61,6 +62,6 @@ const main = async () => {
 
 	return options.output === "-"
 		? output.stdout(path, options.base64)
-		: output.file(path, options.output === "." ? file : options.output);
+		: output.file(path, options.output === "." ? basename(file) : options.output);
 };
 main();
