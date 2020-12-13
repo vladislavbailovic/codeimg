@@ -11,6 +11,7 @@ const fonts = require('./lib/fonts.js');
 const output = require('./lib/output.js');
 
 const optionDefinitions = [
+	{ name: 'port', description: 'Port used to serve rendered markup - default 8080', alias: 'p', type: Number },
 	{ name: 'input', description: 'Input file containing code', alias: 'i', type: String, defaultOption: true },
 	{ name: 'style', description: 'Stylesheet to use', alias: 's', type: String },
 	{ name: 'font', description: 'Font to use', alias: 'f', type: String },
@@ -45,10 +46,6 @@ const main = async () => {
 		return fonts.list();
 	}
 
-	if ('serve' === command) {
-		return preview();
-	}
-
 	if ('help' === command) {
 		return help();
 	}
@@ -59,6 +56,10 @@ const main = async () => {
 		return help();
 	}
 	
+	if ('serve' === command) {
+		return preview(options.port);
+	}
+
 	if (options.file) {
 		file = options.file;
 	}
