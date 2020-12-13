@@ -55,13 +55,13 @@ const main = async () => {
 	if (options.help) {
 		return help();
 	}
-	
+
 	if ('serve' === command) {
 		return preview(options.port);
 	}
 
-	if (options.file) {
-		file = options.file;
+	if (options.input) {
+		file = options.input;
 	}
 
 	const path = await capture.file(file, options.style, options.font);
