@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { basename } = require('path');
 const cliArgs = require('command-line-args');
 const usage = require('command-line-usage');
