@@ -5,17 +5,19 @@ const usage = require('command-line-usage');
 const capture = require('./lib/capture.js');
 const preview = require('./lib/preview.js');
 const styles = require('./lib/styles.js');
+const fonts = require('./lib/fonts.js');
 const output = require('./lib/output.js');
 
 const optionDefinitions = [
-	{ name: 'file', description: 'File containing code', alias: 'f', type: String, defaultOption: true },
+	{ name: 'input', description: 'Input file containing code', alias: 'i', type: String, defaultOption: true },
 	{ name: 'style', description: 'Stylesheet to use', alias: 's', type: String },
+	{ name: 'font', description: 'Font to use', alias: 'f', type: String },
 	{ name: 'output', description: 'Output file - use dash for stdout, dot to just append png. Default is clipboard', alias: 'o', type: String },
 	{ name: 'base64', description: 'Base64-encode stdout', alias: 'b', type: Boolean },
 	{ name: 'help', description: 'Show this help', alias: 'h', type: Boolean },
 ];
 const commandDefinitions = [
-	{ name: 'command', description: 'Subcommand - one of help, ls or serve', defaultOption: true, typeLabel: '(optional)' },
+	{ name: 'command', description: 'Subcommand - one of help, ls, lf or serve', defaultOption: true, typeLabel: '(optional)' },
 ];
 
 const help = () => console.log(usage([
@@ -27,7 +29,7 @@ const help = () => console.log(usage([
 const main = async () => {
 	const subcommands = cliArgs(commandDefinitions, { stopAtFirstUnknown: true });
 	const rawCommand = subcommands.command;
-	const command = [ 'ls', 'serve', 'help' ].reduce((prev, cmd) => rawCommand === cmd ? cmd : prev, 'capture')
+	const command = [ 'ls', 'lf', 'serve', 'help' ].reduce((prev, cmd) => rawCommand === cmd ? cmd : prev, 'capture')
 
 	let file = 'capture' === command && !rawCommand
 		? 0
@@ -35,6 +37,10 @@ const main = async () => {
 
 	if ('ls' === command) {
 		return styles.list();
+	}
+
+	if ('lf' === command) {
+		return fonts.list();
 	}
 
 	if ('serve' === command) {
@@ -55,7 +61,7 @@ const main = async () => {
 		file = options.file;
 	}
 
-	const path = await capture.file(file, options.style);
+	const path = await capture.file(file, options.style, options.font);
 	if (!options.output) {
 		return output.clipboard(path);
 	}
