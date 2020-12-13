@@ -27,7 +27,7 @@ const help = () => console.log(usage([
 const main = async () => {
 	const subcommands = cliArgs(commandDefinitions, { stopAtFirstUnknown: true });
 	const rawCommand = subcommands.command;
-	const command = [ 'ls', 'search', 'help' ].reduce((prev, cmd) => rawCommand === cmd ? cmd : prev, 'capture')
+	const command = [ 'ls', 'serve', 'help' ].reduce((prev, cmd) => rawCommand === cmd ? cmd : prev, 'capture')
 
 	let file = 'capture' === command && !rawCommand
 		? 0

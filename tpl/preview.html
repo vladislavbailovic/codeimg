@@ -3,16 +3,18 @@
 <head>
 	<meta charset="UTF-8">
 	<title>{{LANGUAGE}} Sample</title>
-<style>
-{{STYLE}}
-</style>
+
+	<style> {{STYLE}} </style>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family={{FONT}}&display=swap" rel="stylesheet">
 </head>
 <body>
-	<h1>{{STYLE_NAME}}</h1>
+	<h2>Style: {{STYLE_NAME}}</h2>
+	<h2>Font: {{FONT_NAME}}</h2>
 	<form method="POST" class="container">
-		<div class="row">
-			<select name="style"></select>
-		</div>
+		<div class="row"> <select name="style"></select> </div>
+		<div class="row"> <select name="font"></select> </div>
 		<div class="half-row">
 			<textarea name="code">{{RAWCODE}}</textarea>
 		</div>
@@ -21,7 +23,7 @@
 		</div>
 	</form>
 <script>
-	const sel = document.getElementsByTagName('select')[0];
+	const styleSel = document.querySelector('select[name="style"]');
 	([{{ALL_STYLES}}]).forEach( style => {
 			const opt = document.createElement('option');
 			const txt = document.createTextNode(style);
@@ -29,9 +31,21 @@
 				opt.setAttribute("selected", "selected");
 			}
 			opt.appendChild(txt);
-			sel.appendChild(opt);
+			styleSel.appendChild(opt);
 	});
-	sel.addEventListener('change', () => document.getElementsByTagName('form')[0].submit());
+	styleSel.addEventListener('change', () => document.getElementsByTagName('form')[0].submit());
+
+	const fontSel = document.querySelector('select[name="font"]');
+	([{{ALL_FONTS}}]).forEach( font => {
+			const opt = document.createElement('option');
+			const txt = document.createTextNode(font);
+			if ("{{FONT_NAME}}" == font) {
+				opt.setAttribute("selected", "selected");
+			}
+			opt.appendChild(txt);
+			fontSel.appendChild(opt);
+	});
+	fontSel.addEventListener('change', () => document.getElementsByTagName('form')[0].submit());
 </script>
 <style>
 .container {
@@ -42,7 +56,11 @@
 .half-row {
 	width: 50%;
 }
-.half-row textarea { width: 99%; }
+.half-row textarea { width: 99%; min-height: 33vh; padding: .2em; border: 1px solid #ccc }
+.half-row .hljs { width: 99%; min-height: 33vh; padding: .2em; border: 1px solid transparent }
+.hljs * {
+	font-family: "{{FONT_NAME}}", monospace !important;
+}
 </style>
 </body>
 </html>
