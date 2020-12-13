@@ -11,11 +11,11 @@ Subcommands
 Options
 -------
 
-  -i, --input string    Input file containing code
-  -p, --port number     Port used to serve rendered markup - default 8080
-  -s, --style string    Stylesheet to use
-  -f, --font string     Font to use
-  -o, --output string   Output file - use dash for stdout, dot to just append png. Default is clipboard (which requires `xclip`)
-  -b, --base64          Base64-encode stdout
-  -h, --help            Show this help
+  -i, --input string    Input file containing code  
+  -p, --port number     Port used to serve rendered markup - default 8080  
+  -s, --style string    Stylesheet to use  
+  -f, --font string     Font to use  
+  -o, --output string   Output file - use dash for stdout, dot to just append png. Default is clipboard (which requires `xclip`)  
+  -b, --base64          Base64-encode stdout  
+  -h, --help            Show this help  
 
