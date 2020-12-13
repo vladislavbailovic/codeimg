@@ -9,6 +9,7 @@ const preview = require('./lib/preview.js');
 const styles = require('./lib/styles.js');
 const fonts = require('./lib/fonts.js');
 const output = require('./lib/output.js');
+const render = require('./lib/render.js');
 
 const optionDefinitions = [
 	{ name: 'port', description: 'Port used to serve rendered markup - default 8080', alias: 'p', type: Number },
@@ -57,14 +58,18 @@ const main = async () => {
 	}
 
 	if ('serve' === command) {
-		return preview(options.port);
+		return preview('preview', render.code, options.port);
 	}
 
 	if (options.input) {
 		file = options.input;
 	}
 
-	const path = await capture.file(file, options.style, options.font);
+	const path = await capture.file(
+		file,
+		(await render.code(options.style, options.font)),
+		options.port
+	);
 	if (!options.output) {
 		return output.clipboard(path);
 	}
