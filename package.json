@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "c2i": "cli.js"
+    "c2i": "c2i.js",
+    "m2i": "m2i.js"
   },
   "author": "Vladslav Bailovic",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "command-line-args": "^5.1.1",
     "command-line-usage": "^6.1.1",
     "highlight.js": "^10.4.1",
+    "marked": "^1.2.6",
     "puppeteer": "^5.5.0"
   }
 }
