@@ -10,8 +10,9 @@
 	<link href="https://fonts.googleapis.com/css2?family={{FONT}}&display=swap" rel="stylesheet">
 </head>
 <body>
-	<h2>Style: {{STYLE_NAME}}</h2>
-	<h2>Font: {{FONT_NAME}}</h2>
+	<pre><b>Style:</b> <code>{{STYLE_NAME}}</code></pre>
+	<pre><b>Font:</b> <code>{{FONT_NAME}}</code></pre>
+	<pre><b>Command:</b> <code>c2i -f "{{FONT_NAME}}" -s "{{STYLE_NAME}}"</code></pre>
 	<form method="POST" class="container">
 		<div class="row"> <select name="style"></select> </div>
 		<div class="row"> <select name="font"></select> </div>
